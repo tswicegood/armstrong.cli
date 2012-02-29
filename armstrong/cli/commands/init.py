@@ -9,6 +9,11 @@ import argparse
 from random import choice
 
 CWD = os.getcwd()
+ENTRY_POINT = 'armstrong.templates'
+
+
+class MissingTemplate(RuntimeError):
+    pass
 
 
 class InitCommand(object):
@@ -36,6 +41,17 @@ class InitCommand(object):
             "templates",
             template,
         ))
+
+        if not os.path.exists(template_dir):
+            from pkg_resources import iter_entry_points
+            for ep in iter_entry_points(group=ENTRY_POINT):
+                if ep.name == template:
+                    root = ep.load()
+                    template_dir = root.__path__
+                    break
+            else:
+                raise MissingTemplate("No template named: %s" % template)
+
 
         settings.configure(DEBUG=False, TEMPLATE_DEBUG=False,
                 TEMPLATE_DIRS=[template_dir, ])
