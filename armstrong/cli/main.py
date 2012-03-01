@@ -2,8 +2,6 @@ import os
 import sys
 import argparse
 
-from .commands.init import init
-
 # TODO: use logging throughout for output
 ENTRY_POINT = 'armstrong.commands'
 CONFIGURATION_MODULE = "settings"
