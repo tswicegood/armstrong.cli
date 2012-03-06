@@ -6,6 +6,7 @@
         "console_scripts": ["armstrong = armstrong.cli.main:main"],
         "armstrong.commands": [
             "init = armstrong.cli.commands.init:init",
+            "load_demo_data = armstrong.cli.commands.load_demo_data:load_demo_data",
             "list_templates = armstrong.cli.commands.list_templates:command"
         ]
     },
