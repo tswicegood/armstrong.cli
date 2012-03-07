@@ -13,7 +13,8 @@
     "install_requires": [
         "argparse==1.2.1",
         "gevent==0.13.6",
-        "pyquery==1.1.1"
+        "pyquery==1.1.1",
+        "requests==0.10.6"
     ]
 
 }
