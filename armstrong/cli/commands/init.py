@@ -34,24 +34,14 @@ class InitCommand(object):
         # TODO: interactive mode to ask questions for each variable
         from django.conf import settings
 
-        # TODO: appropriate error output if non-existant template chosen
-        template_dir = os.path.realpath(os.path.join(
-            os.path.dirname(__file__),
-            '..',
-            "templates",
-            template,
-        ))
+        from pkg_resources import iter_entry_points
+        try:
+            entry_point = iter_entry_points(ENTRY_POINT, template).next()
+        except StopIteration:
+            raise MissingTemplate("No template named: %s" % template)
 
-        if not os.path.exists(template_dir):
-            from pkg_resources import iter_entry_points
-            for ep in iter_entry_points(group=ENTRY_POINT):
-                if ep.name == template:
-                    root = ep.load()
-                    template_dir = root.__path__
-                    break
-            else:
-                raise MissingTemplate("No template named: %s" % template)
-
+        module = entry_point.load()
+        template_dir = module.__path__[0]
 
         settings.configure(DEBUG=False, TEMPLATE_DEBUG=False,
                 TEMPLATE_DIRS=[template_dir, ])
