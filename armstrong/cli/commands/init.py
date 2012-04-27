@@ -50,7 +50,7 @@ class InitCommand(object):
         # TODO: allow this to be passed in via command line
         project_name = os.path.basename(path)
 
-        # The secret key generate is borrowed directly from Django's startproject
+        # Secret key generation: borrowed directly from Django's startproject
         CHOICES = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
         secret_key = ''.join([choice(CHOICES) for i in range(50)])
         context = Context({
