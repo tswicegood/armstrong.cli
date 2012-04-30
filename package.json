@@ -11,7 +11,7 @@
     },
     "install_requires": [
         "argparse==1.2.1",
-        "armstrong.templates.standard>=1.0.0,<2.0",
+        "armstrong.templates.standard>=1.0.2,<2.0",
         "armstrong.templates.tutorial>=1.0.0,<2.0"
     ]
 
