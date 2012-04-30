@@ -5,7 +5,6 @@ import re
 import shutil
 import codecs
 import json
-import argparse
 from random import choice
 
 CWD = os.getcwd()
@@ -69,7 +68,6 @@ class InitCommand(object):
                 for name in filenames:
                     if not name.endswith(".pyc"):
                         yield os.path.join(dirpath, name)
-
 
         existing_files = []
         files = []
